@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}"> 
+    <title>Yahtzee</title>
+</head>
+
+<body>
+    <style>
+        body {
+            background-image: url("static/imgs/back.jpg");
+            background-size: cover;
+            color: #fff;
+        }
+
+        img {
+            height: 50%;
+            margin-right: 25px;
+            margin-left: 25px;
+        }
+
+        .row {
+            height: 200px;
+            background: rgba(200, 0, 0, 0.6) !important;
+        }
+
+        .card {
+            height: 200px;
+            margin-top: -2px;
+            background: transparent;
+            padding-left: 90px;
+        }
+
+        .footer {
+            margin-top: 600px;
+            margin-bottom: -43px;
+        }
+        h2 {
+            height: 63px;
+            width: 150px;
+            margin-top: -140px;
+            margin-left: 77%;
+            background: rgba(62, 60, 60, 0.4);
+            padding-left: 15px;
+        }
+        .btn {
+            margin-top: 145px;
+            margin-right: 41px;
+            margin-left: 39px;
+        }
+        .invade {
+            margin-top: -216px;
+        }
+        .btn-large {
+            margin-top: -130px;
+            margin-left: 100px;
+            background: rgba(18,59,147,0.3)
+        }
+        .btn-large:hover {
+            background: rgb(18,59,147)
+        }
+    </style>
+    <div class="row">
+            <div class="col s10 l6 offset-l3 offset-m1 offset-s1">
+            <div class="card valign-wrapper">
+                <img src="{{num1}}" />
+                <img src="{{num2}}" />
+                <img src="{{num3}}" />
+                <img src="{{num4}}" />
+                <img src="{{num5}}" />
+            </div>
+            <div class="card valign-wrapper invade">
+                <button id="dec1" class="btn grey">Keep</button>
+                <button id="dec2" class="btn grey">Keep</button>
+                <button id="dec3" class="btn grey">Keep</button>
+                <button id="dec4" class="btn grey">Keep</button>
+                <button id="dec5" class="btn grey">Keep</button>
+            </div>
+        </div>
+    </div>
+    <div class="row footer">
+        <div class="col s10 l6 offset-l3 offset-m1 offset-s1">
+            <div class="card valign-wrapper">
+                <div class="menu">
+                    {% for i in score %}
+                        {% if i == 5 %}
+                            <h2 style="color:black; background:yellow; height:60px; width:225px; margin-top:25px; margin-left:-10px">Yahtzee!</h2>
+                        {% endif %}
+                        {% if i == 4 %}
+                            <h4 style="color:blue">Four of a kind</h4>
+                        {% endif %}
+                    {% endfor %}
+                    {% if triple == 1 %}
+                        <h4 style="color:green">Three of a kind</h4>
+                    {% endif %}
+                    {% if pair == 1 %}
+                        <h4 style="color:purple">Pair</h4>
+                    {% endif %}
+                    {% if pair == 2 %}
+                        <h4 style="color:purple">Two Pairs</h4>
+                    {% endif %}
+                    {% if full == True %}
+                        <h4 style="color:turquoise">Full House</h4>
+                    {% endif %}
+                    {% if total == 0 %}
+                        <h4 style="color:red; background:black;">None</h4>
+                    {% endif %}
+                </div>
+            </div>
+            <h2>{{total}}pts</h2>
+        </div>
+    </div>
+    <a class="btn-large" href="/lobby_process">Back to Lobby</a>
+    <script>
+        $(document).ready(function(){
+
+            $("#dec1").click(function(){
+                if (document.getElementById("dec1").innerHTML != 'Roll')
+                    {
+                    document.getElementById("dec1").innerHTML = 'Roll'
+                    }
+                else
+                    {
+                    document.getElementById("dec1").innerHTML = 'Keep'
+                    }
+            })
+            $("#dec2").click(function(){
+                if (document.getElementById("dec2").innerHTML != 'Roll')
+                    {
+                    document.getElementById("dec2").innerHTML = 'Roll'
+                    }
+                else
+                    {
+                    document.getElementById("dec2").innerHTML = 'Keep'
+                    }
+            })
+            $("#dec3").click(function(){
+                if (document.getElementById("dec3").innerHTML != 'Roll')
+                    {
+                    document.getElementById("dec3").innerHTML = 'Roll'
+                    }
+                else
+                    {
+                    document.getElementById("dec3").innerHTML = 'Keep'
+                    }
+            })
+            $("#dec4").click(function(){
+                if (document.getElementById("dec4").innerHTML != 'Roll')
+                    {
+                    document.getElementById("dec4").innerHTML = 'Roll'
+                    }
+                else
+                    {
+                    document.getElementById("dec4").innerHTML = 'Keep'
+                    }
+            })
+            $("#dec5").click(function(){
+                if (document.getElementById("dec5").innerHTML != 'Roll')
+                    {
+                    document.getElementById("dec5").innerHTML = 'Roll'
+                    }
+                else
+                    {
+                    document.getElementById("dec5").innerHTML = 'Keep'
+                    }
+            })
+        })
+    </script>
+</body>
+
+</html>

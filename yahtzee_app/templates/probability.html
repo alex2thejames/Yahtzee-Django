@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/normalize.css' %}"> 
+        <title>Yahtzee</title>
+    </head>
+    <body>
+        <style>
+            body {
+                background-image: url("static/imgs/back.jpg");
+                background-size: cover;
+                color: #fff;
+            }
+            h5,h6{
+                color: black;
+            }
+            img {
+	        display: inline-block;
+            }
+            /* .detail {
+                display: inline-block;
+            } */
+            td {
+            	padding: 10px;
+            }
+            .rank {
+            	display: inline-block;
+            	position: absolute;
+            	bottom: 90px;
+            	right: 500px;
+            }
+            .probability {
+            	display: inline-block;
+            	position: absolute;
+            	bottom: 200px;
+            	right: 180px;
+            }
+            .logout {
+                height: 35px;
+                width: 100px;
+                line-height: 32px;
+                font-weight: 500;
+                margin-top: -145px;
+                margin-right: 50px;
+                font-size: 20px;
+                color: rgb(206, 176, 5);
+                background: rgba(0, 0, 0, 0.3);
+                border-radius: 30px;
+            }
+            .logout:hover {
+                background: rgb(0, 0, 0);
+            }
+            .back {
+                height: 35px;
+                width: 150px;
+                line-height: 32px;
+                font-weight: 500;
+                margin-top: -100px;
+                margin-right: 50px;
+                font-size: 20px;
+                color: rgb(5, 35, 206);
+                background: rgba(0, 0, 0, 0.3);
+                border-radius: 30px;
+            }
+            .back:hover {
+                background: rgb(0, 0, 0);
+            }
+
+        </style>
+        	<body>
+                <h3>{{user.first_name}}'s result:</h3>
+                <div class="detail">
+                    <h5>Max score:{{request.session.max}}</h5>
+                    <h5>Average score:{{request.session.ave}}</h5>
+                </div>
+                <img src="{% url 'yahtzee_app:img_plot' %}" alt="" />
+        
+                <div class="rank">
+                    <h5>Ranking:</h5>
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th><h6>Today's Ranking</h6></th>
+                            <th><h6>Month's Ranking</h6></th>
+                        </tr>
+                        {% for i in arr %}
+                        <tr>
+                            <td>{{ i }}</td>
+                            <td>User name{{i}}: {% widthratio 400 i 1%}pt</td>
+                            <td>User name{{i}}: {% widthratio 4500 i 1%}pt</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="probability">
+                    <h5>First roll probability</h5>
+                    <table>
+                        <tr>
+                            <th><h6>Category</h6></th>
+                            <th><h6>Probability(%)</h6></th>
+                        </tr>
+                        <tr>
+                            <td>3 of a Kind</td>
+                            <td>19.29%</td>
+                        </tr>
+                        <tr>
+                            <td>4 of a Kind</td>
+                            <td>1.93%</td>
+                        </tr>
+                        <tr>
+                            <td>Big Straights</td>
+                            <td>3.11%</td>
+                        </tr>
+                        <tr>
+                            <td>Small Straights</td>
+                            <td>21.60%</td>
+                        </tr>
+                        <tr>
+                            <td>Full house</td>
+                            <td>3.86%</td>
+                        </tr>
+                        <tr>
+                            <td>Yahtzee</td>
+                            <td>0.08%</td>
+                        </tr>
+                    </table>
+                </div>
+                <a class="logout right center-align" href="/log_out">Log Out</a>
+                <a class="back right center-align" href="/lobby">Back to Lobby</a>
+            </body>
+        </html>

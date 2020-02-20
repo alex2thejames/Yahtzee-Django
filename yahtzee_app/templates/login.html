@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        {% load static %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/normalize.css' %}"> 
+        <title>Yahtzee</title>
+    </head>
+
+    <body>
+        <style>
+            body {
+                background-image: url("static/imgs/back.jpg");
+                background-size: cover;
+                color: #fff;
+            }
+
+            .card {
+                margin-top: 200px;
+            }
+
+            .card {
+                background: rgba(0, 0, 0, 0.6);
+            }
+
+            .login label {
+                font-size: 16px;
+                color: #ccc;
+            }
+
+            .login input {
+                font-size: 22px;
+                color: #fff;
+            }
+
+            .login button:hover {
+                padding: 0px 50px;
+            }
+
+            button {
+                margin-bottom: 20px;
+            }
+
+            a {
+                color: lightskyblue;
+                font-size: 20px;
+            }
+
+            .center {
+                margin-bottom: -20px;
+            }
+            ul {
+                margin-bottom: -31px;
+                background: red;
+                color: white;
+                font-weight: 500;
+                font-size: 30px;
+            }
+        </style>
+        <div class="row login">
+            <div class="col s12 l4 offset-l4">
+                <div class="card">
+                    <div class="card-action red lighten-1 white-text">
+                        <h3>Login</h3>
+                    </div>
+                    <form action="login/process" method="POST">
+                        {% csrf_token %}
+                        <div class="card-content">
+                            <div class="input-field">
+                                <i class="material-icons prefix">email</i>
+                                <input type="text" name="email" placeholder="Email" required />
+                            </div>
+                            <br />
+                            <div class="input-field">
+                                <i class="material-icons prefix">lock</i>
+                                <input type="password" name="password" placeholder="Password" required />
+                            </div>
+                            <br />
+                            <div class="center form-field center-align">
+                                <button class="btn-large red">Login</button><br />
+                                <a href="/register">Create Account</a>
+                                {% if messages %}
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                            </div>
+                            <br />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
